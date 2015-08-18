@@ -4,6 +4,9 @@
 // Variables
 boolean Rotate_In_Degrees = true;
 int Delay_Of_Steps = 1000;
+
+int Delay_Percentage = 100;
+int Acceleration_Percentage = 1;
 // Outputs
 #define Output_LED	13
 // Constant outputs for stepper 1
@@ -131,6 +134,9 @@ void setStepper(int Parameter_Rounds, int Parameter_Delay, boolean Parameter_Deg
 		Parameter_Rounds = round(Parameter_Rounds * 1.4153);
 	}
 
+	// This is for the acceleration
+	Parameter_Delay += (Parameter_Delay / 100) * Delay_Percentage;
+
 	for (int X = 0; X < Parameter_Rounds; X++)
 	{
         digitalWrite(Output_S1_IN1, HIGH);
@@ -180,6 +186,10 @@ void setStepper(int Parameter_Rounds, int Parameter_Delay, boolean Parameter_Deg
         digitalWrite(Output_S2_IN1, HIGH);
         digitalWrite(Output_S2_IN4, HIGH);
         delayMicroseconds(Parameter_Delay);
+
+        // Speed up acceleration
+        if (Parameter_Delay > Minimum_Delay)
+        	Parameter_Delay -= (Minimum_Delay / 100) * Acceleration_Percentage;
 	}    
 
 	// Disable all outputs
