@@ -63,6 +63,11 @@ void serialEvent()
 // ############################################################################################################################
 void gotoDegree(int Parameter_Degrees)
 {
+	// Set maximum/minimum
+	if (Parameter_Degrees < 0)
+		Parameter_Degrees = 0;
+	if (Parameter_Degrees > 359)
+		Parameter_Degrees = 359;
 	// Get the distance between the current and the target position
 	int Distance = abs(abs(Parameter_Degrees) - abs(Current_Position));
 	// Set direction
@@ -139,6 +144,7 @@ void setStepper(int Parameter_Rounds, int Parameter_Delay, boolean Parameter_Deg
         digitalWrite(Output_IN4, HIGH);
         delayMicroseconds(Parameter_Delay);
 	}    
+
 	// Disable all outputs
 	digitalWrite(Output_IN1, LOW);
 	digitalWrite(Output_IN2, LOW);
