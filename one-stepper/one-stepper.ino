@@ -15,7 +15,7 @@ const byte stepperConstIn4 = 5;
 byte stepperIn1 = stepperConstIn1; 
 byte stepperIn2 = stepperConstIn2; 
 byte stepperIn3 = stepperConstIn3; 
-byte stepperIn4 = stepperConstIn4;	 
+byte stepperIn4 = stepperConstIn4;
 
 void setup() 
 {
@@ -50,9 +50,9 @@ void serialEvent()
 	}
 }
 
-void setDirection(boolean Parameter_Positive)
+void setDirection(boolean dirPos)
 {
-	if (Parameter_Positive)
+	if (dirPos)
  	{
  		stepperIn1 = stepperConstIn1; 
  		stepperIn2 = stepperConstIn2; 
